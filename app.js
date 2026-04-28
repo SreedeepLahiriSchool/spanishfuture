@@ -147,21 +147,23 @@ function buildQuiz(containerId, questions) {
         answered = true;
 
         const allBtns = optsGrid.querySelectorAll('.q-opt');
-        allBtns.forEach(b => {
-          b.disabled = true;
-          if (b.textContent === q.answer) b.classList.add('correct', 'revealed');
-        });
+      allBtns.forEach(b => {
+  b.disabled = true;
+});
 
-        const fb = item.querySelector('.q-feedback');
-        if (opt === q.answer) {
-          btn.classList.add('correct');
-          fb.textContent = '✅ ¡Correcto!';
-          fb.className = 'q-feedback correct';
-        } else {
-          btn.classList.add('wrong');
-          fb.textContent = `❌ Incorrecto. La respuesta correcta es: "${q.answer}"`;
-          fb.className = 'q-feedback wrong';
-        }
+  if (opt === q.answer) {
+  btn.classList.add('correct');
+  fb.textContent = '✅ ¡Correcto!';
+  fb.className = 'q-feedback correct';
+    } else {
+  btn.classList.add('wrong');
+  // Mark the correct answer green as a hint, flagged as revealed
+  allBtns.forEach(b => {
+    if (b.textContent === q.answer) b.classList.add('correct', 'revealed');
+  });
+  fb.textContent = `❌ Incorrecto. La respuesta correcta es: "${q.answer}"`;
+  fb.className = 'q-feedback wrong';
+  }
         updateScore(containerId);
       });
       optsGrid.appendChild(btn);
