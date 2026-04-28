@@ -149,7 +149,7 @@ function buildQuiz(containerId, questions) {
         const allBtns = optsGrid.querySelectorAll('.q-opt');
         allBtns.forEach(b => {
           b.disabled = true;
-          if (b.textContent === q.answer) b.classList.add('correct');
+          if (b.textContent === q.answer) b.classList.add('correct', 'revealed');
         });
 
         const fb = item.querySelector('.q-feedback');
@@ -191,7 +191,7 @@ function updateScore(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   // Count buttons marked correct that are NOT also marked wrong
-  const correctCount = container.querySelectorAll('.q-opt.correct').length;
+  const correctCount = container.querySelectorAll('.q-opt.correct:not(.wrong):not(.revealed)').length;
   const ptsEl = document.getElementById(containerId + '-pts');
   if (ptsEl) ptsEl.textContent = correctCount;
 }
