@@ -191,7 +191,7 @@ function updateScore(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   // Count buttons marked correct that are NOT also marked wrong
-  const correctCount = container.querySelectorAll('.q-opt.correct:not(.wrong)').length;
+  const correctCount = container.querySelectorAll('.q-opt.correct').length;
   const ptsEl = document.getElementById(containerId + '-pts');
   if (ptsEl) ptsEl.textContent = correctCount;
 }
