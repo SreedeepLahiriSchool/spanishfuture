@@ -57,6 +57,7 @@ const fcEx      = document.getElementById('fc-example');
 const fcEmoji   = document.getElementById('fc-emoji');
 const fcCounter = document.getElementById('fc-counter');
 const fcDotsEl  = document.getElementById('fc-dots');
+let scoreqs = 0;
 
 function buildDots() {
   if (!fcDotsEl) return;
@@ -157,6 +158,7 @@ function buildQuiz(containerId, questions) {
           btn.classList.add('correct');
           fb.textContent = '✅ ¡Correcto!';
           fb.className = 'q-feedback correct';
+          scoreqs = scoreqs + 1;
         } else {
           btn.classList.add('wrong');
           fb.textContent = `❌ Incorrecto. La respuesta correcta es: "${q.answer}"`;
@@ -191,7 +193,7 @@ function updateScore(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   // Count buttons marked correct that are NOT also marked wrong
-  const correctCount = container.querySelectorAll('.q-opt.correct:not(.wrong)').length;
+  const correctCount = container.querySelectorAll('.q-opt.correct').length;
   const ptsEl = document.getElementById(containerId + '-pts');
   if (ptsEl) ptsEl.textContent = correctCount;
 }
