@@ -1,3 +1,6 @@
+const correctSound = new Audio('sound1.mp3');
+
+
 // ============================
 // FLASHCARD DATA
 // ============================
